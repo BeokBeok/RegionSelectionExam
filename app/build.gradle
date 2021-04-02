@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.33-beta'
     kapt 'com.google.dagger:hilt-compiler:2.33-beta'
     implementation 'androidx.activity:activity-ktx:1.2.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
