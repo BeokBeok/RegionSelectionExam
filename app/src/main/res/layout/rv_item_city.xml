@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="area"
+            type="com.beok.regionselectionview.Area" />
+
+        <variable
+            name="viewModel"
+            type="com.beok.regionselectionview.MainViewModel" />
+    </data>
+
+    <CheckedTextView
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:checkMark="@null"
+        android:onClick="@{() -> viewModel.onClick(area)}"
+        android:checked="@{area.isSelected}"
+        android:gravity="center"
+        android:paddingHorizontal="20dp"
+        android:text="@{area.name}"
+        android:textColor="@drawable/selector_area_item"
+        tools:text="서울특별시" />
+</layout>
