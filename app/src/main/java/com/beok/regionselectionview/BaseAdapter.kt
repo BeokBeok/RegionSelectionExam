@@ -17,8 +17,15 @@ class BaseAdapter(
         BaseViewHolder(parent = parent, layoutResourceID = layoutResourceID, bindingID = bindingID)
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        holder.bind(item = itemList, viewModel = viewModel)
+        holder.bind(item = itemList[position], viewModel = viewModel)
     }
 
     override fun getItemCount(): Int = itemList.size
+
+    fun replaceItem(item: List<Any>) {
+        itemList.run {
+            clear()
+            addAll(item)
+        }
+    }
 }
