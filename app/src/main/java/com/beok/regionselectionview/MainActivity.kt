@@ -37,10 +37,24 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         )
+        binding.rvMainDistrict.adapter = BaseListAdapter(
+            layoutResourceID = R.layout.rv_item_district,
+            bindingID = BR.area,
+            viewModel = mapOf(BR.viewModel to viewModel),
+            diffUtil = object : DiffUtil.ItemCallback<Area>() {
+                override fun areItemsTheSame(oldItem: Area, newItem: Area): Boolean {
+                    return oldItem.name == newItem.name
+                }
+
+                override fun areContentsTheSame(oldItem: Area, newItem: Area): Boolean {
+                    return oldItem == newItem
+                }
+            }
+        )
     }
 
     private fun showContent() {
-        viewModel.fetch()
+        viewModel.fetchCity()
     }
 
     private fun setupBinding() {
