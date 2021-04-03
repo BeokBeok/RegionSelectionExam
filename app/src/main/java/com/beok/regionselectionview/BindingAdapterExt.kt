@@ -16,9 +16,7 @@ fun replaceItem(recyclerView: RecyclerView, item: StateFlow<List<Any>>?) =
         if (item == null) return@launch
 
         item.collect {
-            (recyclerView.adapter as? BaseAdapter)?.run {
-                replaceItem(it)
-                notifyDataSetChanged()
-            }
+            @Suppress("UNCHECKED_CAST")
+            (recyclerView.adapter as? BaseListAdapter<Any>)?.submitList(it)
         }
     }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import com.beok.regionselectionview.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,10 +23,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        binding.rvMainContent.adapter = BaseAdapter(
+        binding.rvMainCity.adapter = BaseListAdapter(
             layoutResourceID = R.layout.rv_item_city,
             bindingID = BR.area,
-            viewModel = mapOf(BR.viewModel to viewModel)
+            viewModel = mapOf(BR.viewModel to viewModel),
+            diffUtil = object : DiffUtil.ItemCallback<Area>() {
+                override fun areItemsTheSame(oldItem: Area, newItem: Area): Boolean {
+                    return oldItem.name == newItem.name
+                }
+
+                override fun areContentsTheSame(oldItem: Area, newItem: Area): Boolean {
+                    return oldItem == newItem
+                }
+            }
         )
     }
 

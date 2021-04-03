@@ -16,7 +16,7 @@
         tools:context=".MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_main_content"
+            android:id="@+id/rv_main_city"
             bind_replaceItem="@{viewModel.city}"
             android:layout_width="0dp"
             android:layout_height="200dp"
