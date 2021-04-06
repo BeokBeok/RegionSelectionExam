@@ -18,6 +18,7 @@
     <CheckedTextView
         android:layout_width="match_parent"
         android:layout_height="32dp"
+        android:background="@color/selector_area_item_background"
         android:checkMark="@null"
         android:checked="@{area.isSelected}"
         android:gravity="center"
