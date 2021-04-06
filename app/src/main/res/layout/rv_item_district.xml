@@ -24,6 +24,6 @@
         android:onClick="@{() -> viewModel.onClick(AreaScope.DISTRICT, area)}"
         android:paddingHorizontal="20dp"
         android:text="@{area.name}"
-        android:textColor="@drawable/selector_area_item"
+        android:textColor="@color/selector_area_item"
         tools:text="강서구" />
 </layout>
