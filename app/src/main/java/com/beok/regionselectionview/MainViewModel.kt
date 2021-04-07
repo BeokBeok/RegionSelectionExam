@@ -69,13 +69,24 @@ class MainViewModel @Inject constructor() : ViewModel() {
         Area("기장군"),
     )
 
+    private val currentCity = mutableListOf<Area>()
+    private val selectAreaList = mutableSetOf<SelectArea>()
+
     fun fetchCity() {
         _city.value = wholeCity
     }
 
     fun fetchDistrict(city: Area) {
         _district.value = when (city.name) {
-            "서울특별시" -> seoul
+            "서울특별시" -> seoul.map { area ->
+                if (selectAreaList.any { selectArea ->
+                        selectArea.district == area.name
+                    }) {
+                    area.copy(isSelected = true)
+                } else {
+                    area
+                }
+            }
             "부산광역시" -> busan
             else -> emptyList()
         }
@@ -88,6 +99,10 @@ class MainViewModel @Inject constructor() : ViewModel() {
                     .map {
                         if (it.name == area.name) {
                             fetchDistrict(area)
+                            currentCity.run {
+                                clear()
+                                add(area)
+                            }
                             return@map area.copy(isSelected = !it.isSelected)
                         }
                         it.copy(isSelected = false)
@@ -97,6 +112,9 @@ class MainViewModel @Inject constructor() : ViewModel() {
                 _district.value = _district.value
                     .map {
                         if (it.name == area.name) {
+                            if (it.name == "전체") {
+                                selectAreaList.add(SelectArea(currentCity.first().name, area.name))
+                            }
                             return@map area.copy(isSelected = !it.isSelected)
                         }
                         it.copy(isSelected = false)
