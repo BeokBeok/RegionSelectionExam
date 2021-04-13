@@ -113,6 +113,8 @@ class MainViewModel @Inject constructor() : ViewModel() {
                     .map {
                         if (area.name == "전체") {
                             selectAreaList.add(SelectArea(currentCity.first().name, area.name))
+                        } else {
+                            selectAreaList.remove(SelectArea(currentCity.first().name, "전체"))
                         }
                         if (it.name == area.name) {
                             return@map area.copy(isSelected = !it.isSelected)
