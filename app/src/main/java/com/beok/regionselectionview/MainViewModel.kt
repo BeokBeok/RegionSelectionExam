@@ -111,10 +111,10 @@ class MainViewModel @Inject constructor() : ViewModel() {
             AreaScope.DISTRICT -> {
                 _district.value = _district.value
                     .map {
+                        if (area.name == "전체") {
+                            selectAreaList.add(SelectArea(currentCity.first().name, area.name))
+                        }
                         if (it.name == area.name) {
-                            if (it.name == "전체") {
-                                selectAreaList.add(SelectArea(currentCity.first().name, area.name))
-                            }
                             return@map area.copy(isSelected = !it.isSelected)
                         }
                         it.copy(isSelected = false)
